@@ -29,4 +29,5 @@
     <color name="text_color">#FFFFFF</color>
     <color name="text_background">#2B2B2B</color>
     <color name="faint_orange">#601A05</color>
+    <color name="off">#2C2C2C</color>
 </resources>

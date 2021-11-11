@@ -1,12 +1,11 @@
 package com.example.operations;
 
-import static android.content.ContentValues.TAG;
-
 import android.util.Log;
 
 public class ModuloOperation {
     String expression;
     long modulo;
+    String TAG = "ModuloOperation";
 
     private class ExpressionTree {
         String data;
@@ -42,7 +41,7 @@ public class ModuloOperation {
                 return 10;
         }
     }
-
+    
     //This function finds the minimum priority operator
     //And returns its position
     private int findMinPri(String str) {
@@ -73,9 +72,17 @@ public class ModuloOperation {
 
     private long powerMod(long a, long n, long mod) {
         Log.d(TAG, "powerMod: Entered");
-        if (a == 1)
+        if (a == 0){
+            Log.d(TAG, "powerMod: a == 0");
+            return 0;
+        }
+        if (a == 1) {
+            Log.d(TAG, "powerMod: a == 1");
             return 1;
+        }
+        Log.d(TAG, "powerMod: a != 0 and a!=1");
         long k = (long) (Math.log(mod) / Math.log(a)) + 1;
+        Log.i(TAG, "powerMod: k = "+k);
         if (n >= k)
             return ((powerMod((long) (Math.pow(a, k)) % mod, n / k, mod)) * (long) Math.pow(a, (n % k)) % mod);
         else
@@ -144,21 +151,21 @@ public class ModuloOperation {
     private long solve(ExpressionTree exp) {
         Log.d(TAG, "solve: Entered");
         if (isNumeric(exp.data))
-            return (Long.parseLong(exp.data));
+            return (Long.parseLong(exp.data) % modulo);
         else {
             long ans;
             switch (exp.data.charAt(0)) {
                 case '-':
-                    ans = (solve(exp.left) % modulo - solve(exp.right) % modulo) % modulo;
+                    ans = (solve(exp.left) - solve(exp.right)) % modulo;
                     break;
                 case '+':
-                    ans = (solve(exp.left) % modulo + solve(exp.right) % modulo) % modulo;
+                    ans = (solve(exp.left) + solve(exp.right)) % modulo;
                     break;
                 case '*':
-                    ans = (solve(exp.left) % modulo * solve(exp.right) % modulo) % modulo;
+                    ans = (solve(exp.left) * solve(exp.right)) % modulo;
                     break;
                 case '/':
-                    ans = (solve(exp.left) % modulo / solve(exp.right) % modulo) % modulo;
+                    ans = (solve(exp.left) / solve(exp.right)) % modulo;
                     break;
                 case '^':
                     ans = powerMod(solve(exp.left), solve(exp.right), modulo);

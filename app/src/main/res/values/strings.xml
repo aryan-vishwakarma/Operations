@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Operations</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="c">C</string>
+    <string name="menu">Menu</string>
+    <string name="modulo_operation">Modulo Operation</string>
+    <string name="hcf_and_lcm">HCF and LCM</string>
 </resources>
