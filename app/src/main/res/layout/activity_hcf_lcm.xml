@@ -5,61 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Home"
-    tools:context=".MainActivity">
-
-    <HorizontalScrollView
-        android:id="@+id/scroll_view_exp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:fillViewport="true"
-        android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
-
-        <TextView
-            android:id="@+id/modulo_expression"
-            android:layout_width="wrap_content"
-            android:layout_height="46dp"
-            android:hint="Enter Expression"
-            android:scrollHorizontally="true"
-            android:paddingHorizontal="10dp"
-            android:textAlignment="viewEnd"
-            android:textColor="@color/text_color"
-            android:textSize="32sp" />
-    </HorizontalScrollView>
-
-    <TextView
-        android:id="@+id/modulo_modulo"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Modulo"
-        android:textAlignment="viewEnd"
-        android:textColor="@color/text_color"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scroll_view_exp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Modulo Operation"
-        android:textColor="@color/text_color"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.588"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".HcfLcmActivity">
 
     <TableLayout
-        android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +19,7 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/modulo_c_btn"
+                android:id="@+id/hcf_c_btn"
                 style="@style/OpButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,29 +27,13 @@
                 android:text="@string/c"
                 android:textColor="@color/red" />
 
-            <Button
-                android:id="@+id/modulo_exp_btn"
-                style="@style/OpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="^" />
-
             <ImageButton
-                android:id="@+id/modulo_bks_btn"
+                android:id="@+id/hcf_bks_btn"
                 style="@style/OpButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:src="@drawable/ic_backspace" />
-
-            <Button
-                android:id="@+id/modulo_div_btn"
-                style="@style/OpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="/" />
         </TableRow>
 
         <TableRow
@@ -109,7 +41,7 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/modulo_seven_btn"
+                android:id="@+id/hcf_seven_btn"
                 style="@style/NumButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,7 +49,7 @@
                 android:text="7" />
 
             <Button
-                android:id="@+id/modulo_eight_btn"
+                android:id="@+id/hcf_eight_btn"
                 style="@style/NumButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -125,20 +57,12 @@
                 android:text="8" />
 
             <Button
-                android:id="@+id/modulo_nine_btn"
+                android:id="@+id/hcf_nine_btn"
                 style="@style/NumButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="9" />
-
-            <Button
-                android:id="@+id/modulo_mul_btn"
-                style="@style/OpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="*" />
         </TableRow>
 
         <TableRow
@@ -146,7 +70,7 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/modulo_four_btn"
+                android:id="@+id/hcf_four_btn"
                 style="@style/NumButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -154,7 +78,7 @@
                 android:text="4" />
 
             <Button
-                android:id="@+id/modulo_five_btn"
+                android:id="@+id/hcf_five_btn"
                 style="@style/NumButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -162,28 +86,20 @@
                 android:text="5" />
 
             <Button
-                android:id="@+id/modulo_six_btn"
+                android:id="@+id/hcf_six_btn"
                 style="@style/NumButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="6" />
-
-            <Button
-                android:id="@+id/modulo_sub_btn"
-                style="@style/OpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="-" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" >
 
             <Button
-                android:id="@+id/modulo_one_btn"
+                android:id="@+id/hcf_one_btn"
                 style="@style/NumButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -191,7 +107,7 @@
                 android:text="1" />
 
             <Button
-                android:id="@+id/modulo_two_btn"
+                android:id="@+id/hcf_two_btn"
                 style="@style/NumButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -199,45 +115,28 @@
                 android:text="2" />
 
             <Button
-                android:id="@+id/modulo_three_btn"
+                android:id="@+id/hcf_three_btn"
                 style="@style/NumButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="3" />
-
-            <Button
-                android:id="@+id/modulo_plus_btn"
-                style="@style/OpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="+" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <Button
-                android:id="@+id/modulo_open_bracket"
+                android:id="@+id/hcf_comma_btn"
                 style="@style/OpButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="(" />
+                android:text="," />
 
             <Button
-                android:id="@+id/modulo_closed_bracket"
-                style="@style/OpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text=")" />
-
-            <Button
-                android:id="@+id/modulo_zero_btn"
+                android:id="@+id/hcf_zero_btn"
                 style="@style/NumButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -245,47 +144,86 @@
                 android:text="0" />
 
             <Button
-                android:id="@+id/modulo_fac_btn"
-                style="@style/OpButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="!" />
-
-
-            <Button
-                android:id="@+id/modulo_equal_btn"
+                android:id="@+id/hcf_equal_btn"
                 style="@style/OpButton"
                 android:layout_width="112dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="=" />
         </TableRow>
+
     </TableLayout>
 
     <TextView
-        android:id="@+id/modulo_answer"
+        android:id="@+id/pc_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:padding="9dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/hcf_and_lcm"
         android:textColor="@color/text_color"
-        android:textSize="30sp"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modulo_modulo" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/modulo_menu_btn"
+    <HorizontalScrollView
+        android:id="@+id/scroll_view_hcf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:padding="7dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:background="@drawable/text_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pc_heading">
+
+        <TextView
+            android:id="@+id/hcf_exp"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:hint="Numbers(Eg 12, 45, 36)"
+            android:scrollHorizontally="true"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/text_color"
+            android:textSize="30sp" />
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/hcf_ans_hcf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="24dp"
+        android:textColor="@color/text_color"
+        android:layout_marginTop="16dp"
+        android:padding="5dp"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scroll_view_hcf" />
+
+    <TextView
+        android:id="@+id/hcf_ans_lcm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textColor="@color/text_color"
+        android:layout_marginTop="16dp"
+        android:padding="5dp"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hcf_ans_hcf" />
+
+    <ImageButton
+        android:id="@+id/pc_menu_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
         android:backgroundTint="@color/Home"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_menu_icon" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

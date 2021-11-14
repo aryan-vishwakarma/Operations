@@ -5,4 +5,11 @@
     <string name="menu">Menu</string>
     <string name="modulo_operation">Modulo Operation</string>
     <string name="hcf_and_lcm">HCF and LCM</string>
+    <string name="hcf_ans">HCF : %1$s</string>
+    <string name="lcm_ans">LCM : %1$s</string>
+    <string name="prime_checker">Prime Checker</string>
+    <string name="enter_a_number">Enter a number</string>
+    <string name="next_prime">Next Prime : %1$d</string>
+    <string name="previous_prime">Previous Prime : %1$d</string>
+    <string name="no_previous_prime">No Previous Prime</string>
 </resources>

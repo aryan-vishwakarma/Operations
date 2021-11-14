@@ -13,6 +13,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
     <style name="NumButton" parent="Widget.AppCompat.Button.Borderless">
@@ -25,6 +26,12 @@
         <item name="android:textColor">@color/orange</item>
         <item name="android:backgroundTint">@color/black</item>
     </style>
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
     <color name="Home">#000000</color>
     <color name="text_color">#FFFFFF</color>
     <color name="text_background">#2B2B2B</color>

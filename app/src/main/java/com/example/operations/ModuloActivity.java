@@ -3,6 +3,7 @@ package com.example.operations;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,11 +13,12 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class ModuloActivity extends AppCompatActivity {
 
     final String TAG = "Main Activity";
+    public static Activity fa;
 
-    TextView expression, modulo, selected, answer;
+    TextView expression, modulo, selected, answer, empty;
     Button c_btn, exp_bnt, div_btn, seven_btn, eight_btn,
     nine_btn, four_btn, five_btn, six_btn, one_btn, two_btn,
     three_btn, zero_btn, equal_btn, fac_btn, plus_btn, sub_btn,
@@ -30,7 +32,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_modulo);
+
+        fa = this;
+
+        try {
+            PrimeCheckActivity.fa.finish();
+        } catch (Exception ignored) {}
+        try {
+            HcfLcmActivity.fa.finish();
+        } catch (Exception ignored) {        }
 
         expression = findViewById(R.id.modulo_expression);
         modulo = findViewById(R.id.modulo_modulo);
@@ -59,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         closed_brac = findViewById(R.id.modulo_closed_bracket);
         scrollView = findViewById(R.id.scroll_view_exp);
         menu_btn = findViewById(R.id.modulo_menu_btn);
+        empty = findViewById(R.id.modulo_empty);
 
         moduloOperation = new ModuloOperation();
 
@@ -68,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
         menu_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MenuActivity.class));
-                finish();
+                startActivity(new Intent(ModuloActivity.this, MenuActivity.class));
             }
         });
 
@@ -77,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selected = expression;
-                scrollView.setBackground(AppCompatResources.getDrawable(MainActivity.this, R.drawable.text_background));
+                scrollView.setBackground(AppCompatResources.getDrawable(ModuloActivity.this, R.drawable.text_background));
                 modulo.setBackground(null);
                 enable();
             }
@@ -86,7 +97,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selected = modulo;
-                selected.setBackground(AppCompatResources.getDrawable(MainActivity.this, R.drawable.text_background));
+                selected.setBackground(AppCompatResources.getDrawable(ModuloActivity.this, R.drawable.text_background));
+                scrollView.setBackground(null);
+                disable();
+            }
+        });
+        empty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selected = modulo;
+                selected.setBackground(AppCompatResources.getDrawable(ModuloActivity.this, R.drawable.text_background));
                 scrollView.setBackground(null);
                 disable();
             }
@@ -275,13 +295,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(expression.getText().length() == 0){
                     selected = expression;
-                    scrollView.setBackground(AppCompatResources.getDrawable(MainActivity.this, R.drawable.text_background));
+                    scrollView.setBackground(AppCompatResources.getDrawable(ModuloActivity.this, R.drawable.text_background));
                     modulo.setBackground(null);
                     enable();
                 }
                 else if(modulo.getText().length() == 0){
                     selected = modulo;
-                    selected.setBackground(AppCompatResources.getDrawable(MainActivity.this, R.drawable.text_background));
+                    selected.setBackground(AppCompatResources.getDrawable(ModuloActivity.this, R.drawable.text_background));
                     scrollView.setBackground(null);
                     disable();
                 }
@@ -296,6 +316,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
     private void disable(){
         exp_bnt.setEnabled(false);
@@ -345,5 +366,11 @@ public class MainActivity extends AppCompatActivity {
         catch (Exception e) {
             Log.d(TAG, "makeScrollRight: Exception " + e.toString());
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ModuloActivity.this, MenuActivity.class));
+        finish();
     }
 }

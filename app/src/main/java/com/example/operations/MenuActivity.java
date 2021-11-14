@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity {
 
-    TextView modulo, hcf;
+    TextView modulo, hcf, prime_checker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,11 +18,35 @@ public class MenuActivity extends AppCompatActivity {
 
         modulo = findViewById(R.id.menu_modulo);
         hcf = findViewById(R.id.menu_hcf);
+        prime_checker = findViewById(R.id.menu_prime_checker);
 
         modulo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, MainActivity.class));
+                if(ModuloActivity.fa == null || ModuloActivity.fa.isFinishing()) {
+                    startActivity(new Intent(MenuActivity.this, ModuloActivity.class));
+                }
+                finish();
+            }
+        });
+
+        hcf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (HcfLcmActivity.fa == null || HcfLcmActivity.fa.isFinishing()) {
+                    startActivity(new Intent(MenuActivity.this, HcfLcmActivity.class));
+                }
+                finish();
+            }
+        });
+
+        prime_checker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (PrimeCheckActivity.fa == null || PrimeCheckActivity.fa.isFinishing()) {
+                    startActivity(new Intent(MenuActivity.this, PrimeCheckActivity.class));
+                }
+                finish();
             }
         });
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.operations">
+    package="com.example.operations" >
 
     <application
         android:allowBackup="true"
@@ -8,11 +8,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Operations">
+        android:theme="@style/Theme.Operations" >
+        <activity
+            android:name=".PrimeCheckActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HcfLcmActivity"
+            android:exported="false"
+            android:screenOrientation="userPortrait" />
         <activity
             android:name=".MenuActivity"
             android:exported="true"
-            android:screenOrientation="userPortrait">
+            android:screenOrientation="userPortrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,9 +27,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ModuloActivity"
             android:exported="false"
-            android:screenOrientation="userPortrait"/>
+            android:screenOrientation="userPortrait" />
     </application>
 
 </manifest>
