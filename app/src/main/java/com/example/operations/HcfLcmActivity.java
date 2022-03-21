@@ -36,13 +36,16 @@ public class HcfLcmActivity extends AppCompatActivity {
 
         fa = this;
         try{
-        ModuloActivity.fa.finish();
+            ModuloActivity.fa.finish();
         }
         catch (Exception ignored){}
         try {
             PrimeCheckActivity.fa.finish();
         }
         catch (Exception ignored){}
+        try {
+            PrimeFactorsActivity.fa.finish();
+        } catch (Exception ignored) {}
 
         scrollView = findViewById(R.id.scroll_view_hcf);
 
@@ -204,6 +207,8 @@ public class HcfLcmActivity extends AppCompatActivity {
         str += ch;
         exp.setText(str);
         makeScrollRight();
+        hcf_ans.setText(null);
+        lcm_ans.setText(null);
     }
 
     private void solve(){

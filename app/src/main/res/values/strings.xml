@@ -12,4 +12,11 @@
     <string name="next_prime">Next Prime : %1$d</string>
     <string name="previous_prime">Previous Prime : %1$d</string>
     <string name="no_previous_prime">No Previous Prime</string>
+    <string name="prime_factors">Prime Factors</string>
+    <string name="prime_generator">Prime Generator</string>
+    <string name="hcf_info_text">This will find HCF and LCF of n numbers, these numbers are to be separated by comma</string>
+    <string name="prime_checker_txt">This will check if the number is a prime number or not. It also outputs next and previous prime numbers of the given number.</string>
+    <string name="prime_factors_info_txt">This will find the prime factors of the given numbers</string>
+    <string name="prime_generator_info_txt">This will find the prime numbers between two numbers \'start\' and \'end\', both inclusive. For e.g., if start = 1 and end = 11 so the output will be 2, 3, 5, 7, 11</string>
+    <string name="modulo_info_txt">This will calculate the remainder obtained upon dividing the result of an expression with a number \'modulo\'. An expression (can be a number) and a modulo (number) is taken as input. For e.g. 3^999 when divided by 7 leaves remainder 5.</string>
 </resources>

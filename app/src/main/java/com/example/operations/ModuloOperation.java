@@ -26,17 +26,15 @@ public class ModuloOperation {
     private int OPvalue(char ch) {
         switch (ch) {
             case '-':
-                return 0;
             case '+':
-                return 1;
+                return 0;
             case '*':
-                return 2;
             case '/':
-                return 3;
+                return 1;
             case '^':
-                return 4;
+                return 2;
             case '!':
-                return 5;
+                return 3;
             default:
                 return 10;
         }
@@ -61,7 +59,8 @@ public class ModuloOperation {
                 closed_brackets++;
             else if (open_brackets == closed_brackets) {
                 op = OPvalue(str.charAt(i));
-                if (op < min_val) {
+                if (op <= min_val) {
+                    Log.d(TAG, "findMinPri: op = "+ op+" min_val = "+min_val+" minpos = "+min_pos);
                     min_pos = i;
                     min_val = op;
                 }
@@ -72,6 +71,7 @@ public class ModuloOperation {
 
     private long powerMod(long a, long n, long mod) {
         Log.d(TAG, "powerMod: Entered");
+        Log.i(TAG, "powerMod: a = "+a+", n = "+n);
         if (a == 0){
             Log.d(TAG, "powerMod: a == 0");
             return 0;
@@ -84,7 +84,7 @@ public class ModuloOperation {
         long k = (long) (Math.log(mod) / Math.log(a)) + 1;
         Log.i(TAG, "powerMod: k = "+k);
         if (n >= k)
-            return ((powerMod((long) (Math.pow(a, k)) % mod, n / k, mod)) * (long) Math.pow(a, (n % k)) % mod);
+            return (((powerMod((long) (Math.pow(a, k)) % mod, n / k, mod)) * (long) Math.pow(a, (n % k))) % mod);
         else
             return ((long) Math.pow(a, n));
     }
@@ -126,7 +126,7 @@ public class ModuloOperation {
         Log.d(TAG, "expressionToTree: Entered");
         str = removeExternalBrackets(str);//removing outer brackets in case expression is like (A*B)
         int pos = findMinPri(str);//finding the minimum priority operator
-        if (pos == -1)
+        if (pos == -1 || isNumeric(String.valueOf(str.charAt(pos))))
             exp.data = str;
         else {
             String strleft;
@@ -168,7 +168,7 @@ public class ModuloOperation {
                     ans = (solve(exp.left) / solve(exp.right)) % modulo;
                     break;
                 case '^':
-                    ans = powerMod(solve(exp.left), solve(exp.right), modulo);
+                    ans = powerMod(solve(exp.left), calculate(exp.right), modulo);
                     break;
                 case '!':
                     Log.d(TAG, "solve: case ! : ");

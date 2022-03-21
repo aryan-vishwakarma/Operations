@@ -32,6 +32,8 @@
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
+    <drawable name="info_icon">@drawable/ic_info_white</drawable>
+
     <color name="Home">#000000</color>
     <color name="text_color">#FFFFFF</color>
     <color name="text_background">#2B2B2B</color>

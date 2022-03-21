@@ -41,7 +41,10 @@ public class ModuloActivity extends AppCompatActivity {
         } catch (Exception ignored) {}
         try {
             HcfLcmActivity.fa.finish();
-        } catch (Exception ignored) {        }
+        } catch (Exception ignored) {}
+        try {
+            PrimeFactorsActivity.fa.finish();
+        } catch (Exception ignored) {}
 
         expression = findViewById(R.id.modulo_expression);
         modulo = findViewById(R.id.modulo_modulo);
@@ -308,9 +311,11 @@ public class ModuloActivity extends AppCompatActivity {
                 else{
                     try {
                         ans = moduloOperation.calculate(expression.getText().toString(), Long.parseLong(modulo.getText().toString()));
+                        Log.d(TAG, "onClick: ans = "+ ans);
                         answer.setText(String.valueOf(ans));
                     }
                     catch (Exception e){
+                        Log.d(TAG, "onClick: Exception = " + e.toString());
                         answer.setText("Error...");
                     }
                 }

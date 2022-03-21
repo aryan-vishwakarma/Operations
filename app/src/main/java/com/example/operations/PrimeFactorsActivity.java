@@ -1,19 +1,25 @@
 package com.example.operations;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PrimeCheckActivity extends AppCompatActivity {
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-    String TAG = "Prime Checker Activity";
+public class PrimeFactorsActivity extends AppCompatActivity {
+
+    String TAG = "Prime Factor Activity";
     public static Activity fa;
 
     Button one, two, three, four, five, six, seven ,
@@ -21,12 +27,15 @@ public class PrimeCheckActivity extends AppCompatActivity {
 
     ImageButton bks_btn, menu_btn;
 
-    TextView number, is_prime_ans, next_prime, previous_prime;
+    TextView number, answer;
+    Map<Long, Integer> factors;
+    PrimeFactors primeFactors;
+    ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_prime_check);
+        setContentView(R.layout.activity_prime_factors);
 
         fa = this;
         try {
@@ -36,7 +45,7 @@ public class PrimeCheckActivity extends AppCompatActivity {
             HcfLcmActivity.fa.finish();
         } catch (Exception ignored) {}
         try {
-            PrimeFactorsActivity.fa.finish();
+            PrimeCheckActivity.fa.finish();
         } catch (Exception ignored) {}
 
         one = findViewById(R.id.pc_one_btn);
@@ -54,9 +63,8 @@ public class PrimeCheckActivity extends AppCompatActivity {
         bks_btn = findViewById(R.id.pc_bks_btn);
         menu_btn = findViewById(R.id.pc_menu_btn);
         number = findViewById(R.id.pc_exp);
-        is_prime_ans = findViewById(R.id.is_prime);
-        next_prime = findViewById(R.id.next_prime);
-        previous_prime = findViewById(R.id.previous_prime);
+        answer = findViewById(R.id.pf_answer);
+        scrollView = findViewById(R.id.scroll_view);
 
         one.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,9 +130,8 @@ public class PrimeCheckActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 number.setText(null);
-                is_prime_ans.setText(null);
-                next_prime.setText(null);
-                previous_prime.setText(null);
+                answer.setText(null);
+                scrollView.setBackground(null);
             }
         });
         bks_btn.setOnClickListener(new View.OnClickListener() {
@@ -136,100 +143,62 @@ public class PrimeCheckActivity extends AppCompatActivity {
                     str = str.substring(0, l - 1);
                     number.setText(str);
                 }
-                is_prime_ans.setText(null);
-                next_prime.setText(null);
-                previous_prime.setText(null);
+                answer.setText(null);
+                scrollView.setBackground(null);
             }
         });
         menu_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PrimeCheckActivity.this, MenuActivity.class));
+                startActivity(new Intent(PrimeFactorsActivity.this, MenuActivity.class));
             }
         });
+
         equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String str = number.getText().toString();
-                if (str.length() != 0) {
-                    long num = Long.parseLong(str);
-                    if (isPrime(num)){
-                        is_prime_ans.setText("Yes, it's Prime");
-                    }
-                    else {
-                        is_prime_ans.setText("No, it's not a Prime");
-                    }
-                    next_prime.setText(getString(R.string.next_prime, nextPrime(num)));
-                    long prev_pr = previousPrime(num);
-                    if (prev_pr != -1) {
-                        previous_prime.setText(getString(R.string.previous_prime, previousPrime(num)));
-                    }
-                    else{
-                        previous_prime.setText(getText(R.string.no_previous_prime));
-                    }
+                if (number.getText().length() != 0) {
+                    primeFactors = new PrimeFactors();
+                    factors = new LinkedHashMap<>();
+                    factors = primeFactors.findPrimeFactors(Long.parseLong(number.getText().toString()));
+                    setAnswer();
                 }
             }
         });
     }
-    private void setText(char ch) {
+
+    private void setAnswer(){
+        String str = "The Prime factors are:\n";
+        for (Map.Entry<Long, Integer> m : factors.entrySet()) {
+            if (m.getValue() == 1){
+                str += "     " + m.getKey() + "\n";
+            } else {
+                str += "     " + m.getKey() + "  ^  " + m.getValue() + "\n";
+            }
+            Log.d(TAG, "setAnswer: str = " + str);
+        }
+        str = str.substring(0, str.length() - 1);
+        Log.d(TAG, "setAnswer: str finally : "+ str);
+        answer.setText(str);
+        scrollView.setBackground(AppCompatResources.getDrawable(this, R.drawable.text_background_plain));
+    }
+
+    private void setText(char ch){
         String str = number.getText().toString();
-        if (str.length() <= 13) {
+        if (str.length() <= 10) {
             str += ch;
             number.setText(str);
+            answer.setText(null);
+            scrollView.setBackground(null);
         }
         else{
-            Toast.makeText(PrimeCheckActivity.this, "Number is too long", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PrimeFactorsActivity.this, "Number is too long", Toast.LENGTH_SHORT).show();
         }
-        is_prime_ans.setText(null);
-        next_prime.setText(null);
-        previous_prime.setText(null);
     }
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(PrimeCheckActivity.this, MenuActivity.class));
+        startActivity(new Intent(PrimeFactorsActivity.this, MenuActivity.class));
         finish();
-    }
-
-    public boolean isPrime(long num){
-        if(num == 0){
-            return false;
-        }
-        if (num == 1){
-            return false;
-        }
-        if (num == 2 || num == 3){
-            return true;
-        }
-        if (num % 6 != 1 && num % 6 != 5){
-            return false;
-        }
-        int flag = 0;
-        for (int i = 2; i < Math.sqrt(num) + 1; i++){
-            if (num % i == 0){
-                flag = 1;
-                break;
-            }
-        }
-        return flag == 0;
-    }
-    private long nextPrime(long num) {
-        int i = 1;
-        while (true){
-            if(isPrime(num + i)){
-                return num + i;
-            }
-            i++;
-        }
-    }
-    private long previousPrime(long num) {
-        int i = 1;
-        while (num - i > 0) {
-            if(isPrime(num - i)){
-                return num - i;
-            }
-            i++;
-        }
-        return  -1;
     }
 }
